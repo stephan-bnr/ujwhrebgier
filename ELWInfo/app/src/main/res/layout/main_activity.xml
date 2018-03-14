@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="#33b5e5"
+            android:background="@color/colorPrimaryLight"
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
             android:textColor="#fff"></android.support.v4.view.PagerTitleStrip>
@@ -33,16 +33,31 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/sync_btn"
-        android:clickable="true"
-        app:srcCompat="@mipmap/wifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:focusable="true"
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/wifi" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/menu_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/menu" />
 
 </android.support.constraint.ConstraintLayout>
