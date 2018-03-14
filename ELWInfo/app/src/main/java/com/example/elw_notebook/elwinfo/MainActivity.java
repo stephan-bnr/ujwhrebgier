@@ -1,5 +1,6 @@
 package com.example.elw_notebook.elwinfo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import com.example.elw_notebook.elwinfo.adapter.PagerAdapter;
  * Program entry point and main representation of the application.
  */
 public class MainActivity extends AppCompatActivity {
+    private static Context mContext = null;
     /**
      * The maximum of pages the application is allowed to have at one point in time.
      */
@@ -56,10 +58,15 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.main_activity);
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mPagerAdapter);
+    }
+
+    public static Context getContext(){
+        return mContext;
     }
 
 }
