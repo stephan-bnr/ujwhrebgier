@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="VEHICLE_NAME_DE">Fahrzeugbezeichnung</string>
+    <string name="MANUFACTURER_DE">Hersteller</string>
+    <string name="CHASSIS_NUMBER_DE">Fahrgestellnummer</string>
+    <string name="AUTOMOTIVE_BATTERY_DE">Starterbatterie</string>
+    <string name="ADDITIONAL_BATTERY_DE">Zusatzbatterie</string>
+    <string name="INPUT_TERMINAL_VOLTAGE_DE">Einspeisespannung</string>
+    <string name="INPUT_FREQUENCY_DE">Einspeisefrequenz</string>
+    <string name="SUPPLY_PRESSURE_DE">Vorratsdruck</string>
+    <string name="FIRE_WATER_VOLUME_DE">Löschwasservolumen</string>
+    <string name="GENERAL_DE">Allgemeines</string>
+    <string name="MISCELLANEOUS_DE">Sonstiges</string>
+    <string name="BTN_SYNC_DE">sync</string>
+</resources>
