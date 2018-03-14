@@ -2,7 +2,7 @@
 <resources>
     <string name="VEHICLE_NAME_DE">Fahrzeugbezeichnung</string>
     <string name="MANUFACTURER_DE">Hersteller</string>
-    <string name="CHASSIS_NUMBER_DE">Fahrgestellnummer</string>
+    <string name="VEHICLE_IDENTIFICATION_NUMBER_DE">Fahrzeug-Identifizierungs-Nummer</string>
     <string name="AUTOMOTIVE_BATTERY_DE">Starterbatterie</string>
     <string name="ADDITIONAL_BATTERY_DE">Zusatzbatterie</string>
     <string name="INPUT_TERMINAL_VOLTAGE_DE">Einspeisespannung</string>

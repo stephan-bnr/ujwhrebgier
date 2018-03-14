@@ -5,20 +5,34 @@ package com.example.elw_notebook.elwinfo.dataObjects;
  * Class representing a vehicle data set.
  */
 public class Vehicle {
-    public Vehicle(String vehicleName, Manufacturer manufacturer, String chassisNumber,
+    public String getInputFrequency() {
+        if (inputFrequency == null || inputFrequency.equals("")) {
+            return null;
+        }
+        return inputFrequency;
+    }
+
+    public void setInputFrequency(String inputFrequency) {
+        this.inputFrequency = inputFrequency;
+    }
+
+    private String inputFrequency;
+
+    public Vehicle(String vehicleName, Manufacturer manufacturer, String vehicleIdentificationNumber,
                    String automotiveBattery, String additionalBattery, String inputTerminalVoltage,
-                   String supplyPressure, String fireWaterVolume, String general,
-                   String miscellaneous) {
-        this.vehicleName = vehicleName;
-        this.manufacturer = manufacturer;
-        this.chassisNumber = chassisNumber;
-        this.automotiveBattery = automotiveBattery;
-        this.additionalBattery = additionalBattery;
-        this.inputTerminalVoltage = inputTerminalVoltage;
-        this.supplyPressure = supplyPressure;
-        this.fireWaterVolume = fireWaterVolume;
-        this.general = general;
-        this.miscellaneous = miscellaneous;
+                   String inputFrequency, String supplyPressure, String fireWaterVolume,
+                   String general, String miscellaneous) {
+        this.setVehicleName(vehicleName);
+        this.setManufacturer(manufacturer);
+        this.setVehicleIdentificationNumber(vehicleIdentificationNumber);
+        this.setAutomotiveBattery(automotiveBattery);
+        this.setAdditionalBattery(additionalBattery);
+        this.setInputTerminalVoltage(inputTerminalVoltage);
+        this.setInputFrequency(inputFrequency);
+        this.setSupplyPressure(supplyPressure);
+        this.setFireWaterVolume(fireWaterVolume);
+        this.setGeneral(general);
+        this.setMiscellaneous(miscellaneous);
     }
 
     public Vehicle() {
@@ -61,15 +75,15 @@ public class Vehicle {
      *
      * @return
      */
-    public String getChassisNumber() {
-        if (chassisNumber == null || chassisNumber.equals("")) {
+    public String getVehicleIdentificationNumber() {
+        if (vehicleIdentificationNumber == null || vehicleIdentificationNumber.equals("")) {
             return null;
         }
-        return chassisNumber;
+        return vehicleIdentificationNumber;
     }
 
-    public void setChassisNumber(String chassisNumber) {
-        this.chassisNumber = chassisNumber;
+    public void setVehicleIdentificationNumber(String vehicleIdentificationNumber) {
+        this.vehicleIdentificationNumber = vehicleIdentificationNumber;
     }
 
     /**
@@ -186,7 +200,7 @@ public class Vehicle {
 
     private String vehicleName = "";
     private Manufacturer manufacturer = null;
-    private String chassisNumber = "";
+    private String vehicleIdentificationNumber = "";
     private String automotiveBattery = "";
     private String additionalBattery = "";
     private String inputTerminalVoltage = "";

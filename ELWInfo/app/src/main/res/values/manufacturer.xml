@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="DAIMLER">Daimler Benz</string>
-    <string name="VW">Volkswagen</string>
+    <string name="DAIMLER">Daimler-Benz</string>
     <string name="FORD">Ford</string>
+    <string name="VW">Volkswagen</string>
     <string name="MAN">MAN</string>
     <string name="OTHER">Sonstige</string>
 </resources>
