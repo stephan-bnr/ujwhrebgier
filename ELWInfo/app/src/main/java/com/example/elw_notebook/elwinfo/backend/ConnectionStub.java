@@ -3,6 +3,7 @@ package com.example.elw_notebook.elwinfo.backend;
 import com.example.elw_notebook.elwinfo.dataObjects.Manufacturer;
 import com.example.elw_notebook.elwinfo.dataObjects.ManufacturerList;
 import com.example.elw_notebook.elwinfo.dataObjects.Vehicle;
+import com.example.elw_notebook.elwinfo.dataObjects.VehicleList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * Test connection. Returns a test set of vehicle data.
  */
 public class ConnectionStub implements Connection {
-    List<Vehicle> vehicleList = null;
+    VehicleList vehicleList = null;
 
     public ConnectionStub() {
         ManufacturerList manufacturerList = new ManufacturerList(true);
@@ -30,15 +31,15 @@ public class ConnectionStub implements Connection {
                 "11,8V", "110V", "60Hz",
                 "20bar", "750L", "Feuerwehr Einsatzleitung",
                 "");
-        vehicleList = new ArrayList<Vehicle>();
-        vehicleList.add(elwFrankfurt);
-        vehicleList.add(elwMainz);
+        vehicleList = new VehicleList();
+        vehicleList.addVehicle(elwFrankfurt);
+        vehicleList.addVehicle(elwMainz);
     }
 
     @Override
     public List<String> getAvailableVehicles() {
         List<String> names = new ArrayList<String>();
-        for (Vehicle vehicle : vehicleList) {
+        for (Vehicle vehicle : vehicleList.getVehicles()) {
             names.add(vehicle.getVehicleName());
         }
         return new ArrayList<String>(names);
@@ -46,11 +47,11 @@ public class ConnectionStub implements Connection {
 
     @Override
     public Vehicle getVehicleByName(String name) throws IllegalArgumentException {
-        for (Vehicle vehicle : vehicleList) {
-            if (name.equalsIgnoreCase(vehicle.getVehicleName())) {
-                return vehicle;
-            }
+        Vehicle vehicle = vehicleList.getVehicleByName(name);
+        if(vehicle != null) {
+            return vehicle;
+        } else {
+            throw new IllegalArgumentException("not found");
         }
-        throw new IllegalArgumentException("not found");
     }
 }

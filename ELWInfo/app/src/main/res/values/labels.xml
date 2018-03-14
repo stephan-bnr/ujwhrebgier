@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="VEHICLE_NAME_DE">Fahrzeugbezeichnung</string>
-    <string name="MANUFACTURER_DE">Hersteller</string>
-    <string name="VEHICLE_IDENTIFICATION_NUMBER_DE">Fahrzeug-Identifizierungs-Nummer</string>
-    <string name="AUTOMOTIVE_BATTERY_DE">Starterbatterie</string>
-    <string name="ADDITIONAL_BATTERY_DE">Zusatzbatterie</string>
-    <string name="INPUT_TERMINAL_VOLTAGE_DE">Einspeisespannung</string>
-    <string name="INPUT_FREQUENCY_DE">Einspeisefrequenz</string>
-    <string name="SUPPLY_PRESSURE_DE">Vorratsdruck</string>
-    <string name="FIRE_WATER_VOLUME_DE">Löschwasservolumen</string>
-    <string name="GENERAL_DE">Allgemeines</string>
-    <string name="MISCELLANEOUS_DE">Sonstiges</string>
-    <string name="BTN_SYNC_DE">sync</string>
+    <string name="VEHICLE_NAME">Fahrzeugbezeichnung</string>
+    <string name="MANUFACTURER">Hersteller</string>
+    <string name="VEHICLE_IDENTIFICATION_NUMBER">Fahrzeug-Identifizierungs-Nummer</string>
+    <string name="AUTOMOTIVE_BATTERY">Starterbatterie</string>
+    <string name="ADDITIONAL_BATTERY">Zusatzbatterie</string>
+    <string name="INPUT_TERMINAL_VOLTAGE">Einspeisespannung</string>
+    <string name="INPUT_FREQUENCY">Einspeisefrequenz</string>
+    <string name="SUPPLY_PRESSURE">Vorratsdruck</string>
+    <string name="FIRE_WATER_VOLUME">Löschwasservolumen</string>
+    <string name="GENERAL">Allgemeines</string>
+    <string name="MISCELLANEOUS">Sonstiges</string>
+    <string name="BTN_SYNC">sync</string>
 </resources>

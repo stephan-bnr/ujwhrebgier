@@ -6,37 +6,48 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.elw_notebook.elwinfo.adapter.PagerAdapter;
+import com.example.elw_notebook.elwinfo.backend.Connection;
+import com.example.elw_notebook.elwinfo.backend.ConnectionStub;
+import com.example.elw_notebook.elwinfo.dataObjects.Vehicle;
+import com.example.elw_notebook.elwinfo.dataObjects.VehicleList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Program entry point and main representation of the application.
  */
 public class MainActivity extends AppCompatActivity {
-    private static Context mContext = null;
     /**
      * The maximum of pages the application is allowed to have at one point in time.
      */
     public static final int MAX_PAGE_NUMBER = 10;
 
-    public static int getCurrentPageNumber() {
-        return currentPageNumber;
+    /**
+     * State if test environment or not.
+     */
+    public static final boolean TEST = true;
+
+    private static Context mContext = null;
+
+    public static Context getContext() {
+        return mContext;
     }
 
-    /**
-     * Does not set lager values then {@link #MAX_PAGE_NUMBER}.
-     * @param currentPageNumber
-     */
-    public static void setCurrentPageNumber(int currentPageNumber) {
-        if(currentPageNumber > MAX_PAGE_NUMBER) {
-            MainActivity.currentPageNumber = MAX_PAGE_NUMBER;
-        } else {
-            MainActivity.currentPageNumber = currentPageNumber;
-        }
+    private VehicleList currentVehicleList = new VehicleList();
+
+    public VehicleList getCurrentVehicleList() {
+        return currentVehicleList;
     }
 
-    /**
-     * Current number of pages in the application.
-     */
-    private static int currentPageNumber = 2;
+    public void setCurrentVehicleList(VehicleList currentVehicleList) {
+        this.currentVehicleList = currentVehicleList;
+    }
+
+    public int getCurrentPageNumber() {
+        return currentVehicleList.getVehicles().size();
+    }
+
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} providing fragments representing ELW
@@ -54,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Program entry point.
+     *
      * @param savedInstanceState
      */
     public void onCreate(Bundle savedInstanceState) {
@@ -63,10 +75,14 @@ public class MainActivity extends AppCompatActivity {
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mPagerAdapter);
-    }
 
-    public static Context getContext(){
-        return mContext;
+        //If test environment, on start fill with test data.
+        Connection connection;
+        if (TEST) {
+            connection = new ConnectionStub();
+            for (String name : connection.getAvailableVehicles()) {
+                currentVehicleList.addVehicle(connection.getVehicleByName(name));
+            }
+        }
     }
-
 }

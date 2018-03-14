@@ -2,6 +2,7 @@ package com.example.elw_notebook.elwinfo.dataObjects;
 
 import com.example.elw_notebook.elwinfo.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,23 +64,22 @@ public class ManufacturerList {
         }
     }
 
-    private List<Manufacturer> manufacturers = null;
+    private List<Manufacturer> manufacturers = new ArrayList<>();
 
     public List<Manufacturer> getMaufacturers() {
         return manufacturers;
     }
 
     /**
-     * Returns true if successful. False if the manufacturer name is empty or already exists.
-     * Not case sensitive.
-     *
      * @param newManufacturer
      * @return
+     * @throws IllegalArgumentException if the manufacturer name is empty or already exists.
+     *                                  Not case sensitive.
      */
-    public boolean addManufacturer(Manufacturer newManufacturer) {
+    public void addManufacturer(Manufacturer newManufacturer) throws IllegalArgumentException {
         // Test if empty.
         if (newManufacturer.getName() == null || newManufacturer.getName().equals("")) {
-            return false;
+            throw new IllegalArgumentException("Manufacturer name must be valid.");
         }
         // Test if exists.
         boolean newMan = true;
@@ -90,39 +90,45 @@ public class ManufacturerList {
         }
         if (newMan) {
             manufacturers.add(newManufacturer);
+        } else {
+            throw new IllegalArgumentException("Manufacturer already exits.");
         }
-        return newMan;
     }
 
     /**
-     * Deletes manufacturer. Returns true if successful, false if they can't be found.
+     * Deletes manufacturer.
      *
      * @param name
      * @return
+     * @throws IllegalArgumentException if they can't be found.
      */
-    public boolean removeManufacturer(String name) {
+    public void removeManufacturer(String name) throws IllegalArgumentException {
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("Name must be valid");
+        }
         for (Manufacturer manufacturer : manufacturers) {
             if (manufacturer.getName().equalsIgnoreCase(name)) {
                 manufacturers.remove(manufacturer);
-                return true;
             }
         }
-        return false;
+        throw new IllegalArgumentException("Manufacturer is not in the list.");
     }
 
     /**
-     * Deletes manufacturer. Returns true if successful, false if they can't be found.
+     * Deletes manufacturer.
      *
      * @param manufacturer
      * @return
+     * @throws IllegalArgumentException if they can't be found.
      */
-    public boolean removeManufacturer(Manufacturer manufacturer) {
-        try {
-            return manufacturers.remove(manufacturer);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+    public void removeManufacturer(Manufacturer manufacturer) {
+        if (manufacturer == null) {
+            throw new IllegalArgumentException("Manufacturer must be valid");
         }
+        if (!manufacturers.remove(manufacturer)) {
+            throw new IllegalArgumentException("Manufacturer is not in the list.");
+        }
+
     }
 
     /**
@@ -148,56 +154,31 @@ public class ManufacturerList {
                 return manufacturer;
             }
         }
-        // Third round: Levenshtein distance 1 ignoring case.
+        // Third round: manufacturer name containing name ignoring case.
         for (Manufacturer manufacturer : manufacturers) {
-            if (LevenshteinDistance(name.toLowerCase(), manufacturer.getName().toLowerCase()) <= 1) {
+            if (manufacturer.getName().toLowerCase().contains(name.toLowerCase())) {
                 return manufacturer;
             }
         }
-        // Forth round: Levenshtein distance 2 ignoring case.
+        // Forth round: Levenshtein distance 1 ignoring case.
         for (Manufacturer manufacturer : manufacturers) {
-            if (LevenshteinDistance(name.toLowerCase(), manufacturer.getName().toLowerCase()) <= 2) {
+            if (General.LevenshteinDistance(name.toLowerCase(), manufacturer.getName().toLowerCase()) <= 1) {
                 return manufacturer;
             }
         }
-        // Fifth round: Levenshtein distance 3 ignoring case.
+        // Fifth round: Levenshtein distance 2 ignoring case.
         for (Manufacturer manufacturer : manufacturers) {
-            if (LevenshteinDistance(name.toLowerCase(), manufacturer.getName().toLowerCase()) <= 3) {
+            if (General.LevenshteinDistance(name.toLowerCase(), manufacturer.getName().toLowerCase()) <= 2) {
+                return manufacturer;
+            }
+        }
+        // Sixth round: Levenshtein distance 3 ignoring case.
+        for (Manufacturer manufacturer : manufacturers) {
+            if (General.LevenshteinDistance(name.toLowerCase(), manufacturer.getName().toLowerCase()) <= 3) {
                 return manufacturer;
             }
         }
         return null;
     }
-
-    /**
-     * Calculates recursively the difference between two strings.
-     *
-     * @param string1
-     * @param string2
-     * @return
-     */
-    private int LevenshteinDistance(String string1, String string2) {
-        int cost;
-        int string1Length = string1.length();
-        int string2Length = string2.length();
-        char[] charArray1 = string1.toCharArray();
-        char[] charArray2 = string2.toCharArray();
-
-        /* base case: empty strings */
-        if (string1Length == 0) return string2Length;
-        if (string2Length == 0) return string1Length;
-
-        /* test if last characters of the strings match */
-        if (charArray1[string1Length - 1] == charArray2[string2Length - 1])
-            cost = 0;
-        else
-            cost = 1;
-
-        /* return minimum of delete char from s, delete char from t, and delete char from both */
-        return Math.min(Math.min((LevenshteinDistance(new String(charArray1), new String(charArray2)) + 1),
-                (LevenshteinDistance(new String(charArray1), new String(charArray2)) + 1)),
-                (LevenshteinDistance(new String(charArray1), new String(charArray2)) + cost));
-    }
-
 
 }
