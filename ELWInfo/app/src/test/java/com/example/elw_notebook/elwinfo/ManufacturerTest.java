@@ -12,12 +12,4 @@ import org.junit.Assert;
 
 public class ManufacturerTest {
 
-    @Test
-    public  void testGetName() {
-        Assert.assertTrue(Manufacturer.AUDI.getName().equals("Audi"));
-    }
-    @Test
-    public void testGetManufacturerByName() {
-        Assert.assertEquals(Manufacturer.AUDI, Manufacturer.getManufacturerByName("sv rjiaudikrm"));
-    }
 }

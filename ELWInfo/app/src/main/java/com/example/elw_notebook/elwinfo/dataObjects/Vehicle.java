@@ -1,8 +1,11 @@
 package com.example.elw_notebook.elwinfo.dataObjects;
 
 
+/**
+ * Class representing a vehicle data set.
+ */
 public class Vehicle {
-    public Vehicle(String vehicleName, String manufacturer, String chassisNumber,
+    public Vehicle(String vehicleName, Manufacturer manufacturer, String chassisNumber,
                    String automotiveBattery, String additionalBattery, String inputTerminalVoltage,
                    String supplyPressure, String fireWaterVolume, String general,
                    String miscellaneous) {
@@ -42,14 +45,14 @@ public class Vehicle {
      *
      * @return
      */
-    public String getManufacturer() {
-        if (manufacturer == null || manufacturer.equals("")) {
+    public Manufacturer getManufacturer() {
+        if (manufacturer == null) {
             return null;
         }
         return manufacturer;
     }
 
-    public void setManufacturer(String manufacturer) {
+    public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
 
@@ -182,7 +185,7 @@ public class Vehicle {
     }
 
     private String vehicleName = "";
-    private String manufacturer = "";
+    private Manufacturer manufacturer = null;
     private String chassisNumber = "";
     private String automotiveBattery = "";
     private String additionalBattery = "";
